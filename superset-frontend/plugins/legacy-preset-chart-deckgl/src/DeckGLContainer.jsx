@@ -36,7 +36,7 @@ const propTypes = {
   viewport: PropTypes.object.isRequired,
   layers: PropTypes.array.isRequired,
   setControlValue: PropTypes.func,
-  mapStyle: PropTypes.string,
+  mapStyle: PropTypes.object,
   mapboxApiAccessToken: PropTypes.string.isRequired,
   children: PropTypes.node,
   bottomMargin: PropTypes.number,
@@ -45,7 +45,25 @@ const propTypes = {
   onViewportChange: PropTypes.func,
 };
 const defaultProps = {
-  mapStyle: 'light',
+  mapStyle: {
+    version: 8,
+    sources: {
+      osm: {
+        type: 'raster',
+        tiles: ['https://osm-russia.cgis.io/tile/{z}/{x}/{y}.png'],
+        tileSize: 256,
+        attribution: '&copy; OpenStreetMap Contributors',
+        maxzoom: 24,
+      },
+    },
+    layers: [
+      {
+        id: 'osm',
+        type: 'raster',
+        source: 'osm',
+      },
+    ],
+  },
   setControlValue: () => {},
   children: null,
   bottomMargin: 0,
@@ -146,3 +164,4 @@ export const DeckGLContainerStyledWrapper = styled(DeckGLContainer)`
     text-overflow: ellipsis;
   }
 `;
+
