@@ -164,4 +164,3 @@ export const DeckGLContainerStyledWrapper = styled(DeckGLContainer)`
     text-overflow: ellipsis;
   }
 `;
-
